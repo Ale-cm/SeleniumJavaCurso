@@ -1,0 +1,49 @@
+package tests;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class Tests {
+	private WebDriver driver;
+	@BeforeMethod
+	public void SetUp() {
+		DesiredCapabilities caps = new DesiredCapabilities();
+		System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.navigate().to("https://www.mercadolibre.com.ar/");
+		try {
+			Thread.sleep(5000);			
+		}
+		catch (InterruptedException e )
+		{
+			e.printStackTrace();
+			}
+		}
+	 
+	@Test 
+	public void pruebaUno() {
+		driver.findElement(By.name("as_word")).sendKeys("camion",Keys.ENTER);
+		try {
+			Thread.sleep(5000);			
+		}
+		catch (InterruptedException e )
+		{
+			e.printStackTrace();
+			}
+		Assert.assertTrue(driver.findElement(By.xpath("/html/body/main/div/div[1]/aside/div[1]/h1")).getText().contains("Camion")); 
+	}
+	 
+	@AfterMethod
+	public void tearDown() {
+		driver.close();
+	}
+}
+
