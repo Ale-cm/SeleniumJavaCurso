@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button class="button" id="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-tests_Tests">
-              <span class="suite-name border-passed">tests.Tests</span>
+              <span class="suite-name border-failed">tests.Tests</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -93,7 +93,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">2 methods, 1 failed,   1 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-tests_Tests" class="hide-methods failed suite-tests_Tests"> (hide)</a> <!-- hide-methods failed suite-tests_Tests -->
+                      <a href="#" panel-name="suite-tests_Tests" class="show-methods failed suite-tests_Tests"> (show)</a> <!-- show-methods failed suite-tests_Tests -->
+                    </span>
+                    <div class="method-list-content failed suite-tests_Tests">
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-tests_Tests" title="tests.Tests" hash-for-method="pruebaDos">pruebaDos</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-tests_Tests -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -119,6 +133,26 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-tests_Tests" class="panel tests_Tests">
+          <div class="suite-tests_Tests-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">tests.Tests</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="pruebaDos">
+                  </a> <!-- pruebaDos -->
+                  <span class="method-name">pruebaDos</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
+	at tests.Tests.pruebaDos(Tests.java:46)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+... Removed 40 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-tests_Tests-class-failed -->
           <div class="suite-tests_Tests-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -185,16 +219,20 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'pruebaUno')
+data.setCell(0, 1, 'pruebaDos')
 data.setCell(0, 2, 'tests.Tests')
-data.setCell(0, 3, 6301);
+data.setCell(0, 3, 5914);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'pruebaUno')
+data.setCell(1, 2, 'tests.Tests')
+data.setCell(1, 3, 5264);
 window.suiteTableData['tests_Tests']= { tableData: data, tableDiv: 'times-div-tests_Tests'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 6 seconds</span>
+              <span class="suite-total-time">Total running time: 11 seconds</span>
               <div id="times-div-tests_Tests">
               </div> <!-- times-div-tests_Tests -->
             </div> <!-- times-div -->
@@ -226,12 +264,26 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">pruebaUno</span>
-                <span class="method-start">9442 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">pruebaDos</span>
+                <span class="method-start">11762 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">15745 ms</span>
+                <span class="method-start">17710 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">SetUp</span>
+                <span class="method-start">21868 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">pruebaUno</span>
+                <span class="method-start">30513 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">35778 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

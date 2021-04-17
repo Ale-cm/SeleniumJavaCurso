@@ -10,6 +10,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import helpers.Helpers;
+import pages.PageSearch;
+
 public class Tests {
 	private WebDriver driver;
 	@BeforeMethod
@@ -19,28 +22,25 @@ public class Tests {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.navigate().to("https://www.mercadolibre.com.ar/");
-		try {
-			Thread.sleep(5000);			
-		}
-		catch (InterruptedException e )
-		{
-			e.printStackTrace();
-			}
-		}
+		
+		Helpers help =new Helpers();
+		help.helps(5);
+	}
 	 
 	@Test 
 	public void pruebaUno() {
-		driver.findElement(By.name("as_word")).sendKeys("camion",Keys.ENTER);
-		try {
-			Thread.sleep(5000);			
-		}
-		catch (InterruptedException e )
-		{
-			e.printStackTrace();
-			}
+		PageSearch pageSearch = new PageSearch(driver); 
+		pageSearch.busqueda("camion");
 		Assert.assertTrue(driver.findElement(By.xpath("/html/body/main/div/div[1]/aside/div[1]/h1")).getText().contains("Camion")); 
 	}
 	 
+	 
+		@Test 
+		public void pruebaDos() {
+			PageSearch pageSearch = new PageSearch(driver); 
+			pageSearch.busqueda("zapatatillas");
+			Assert.assertTrue(driver.findElement(By.xpath("/html/body/main/div/div[1]/aside/div[1]/h1")).getText().contains("Camion")); 
+		}
 	@AfterMethod
 	public void tearDown() {
 		driver.close();
